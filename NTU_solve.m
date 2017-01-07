@@ -1,9 +1,9 @@
 clc
 clear all
-filename='0904¼ò»¯Êı¾İ.xlsx';
+filename='0904ç®€åŒ–æ•°æ®.xlsx';
 sheet=1;
-data_raw=xlsread(filename,sheet);%¶ÁÈ¡Excel±í¸ñ
-[n,~]=size(data_raw);%¼ÆËãÊµÑé×Ü´ÎÊı
+data_raw=xlsread(filename,sheet);%è¯»å–EXCEL
+[n,~]=size(data_raw);ï¿½ï¿½Êµï¿½ï¿½ï¿½Ü´ï¿½ï¿½ï¿½
 
 raw_ps=data_raw(:,3);
 raw_ts=data_raw(:,4);
@@ -42,11 +42,12 @@ for i=1:n
     
     opt = optimset('display','off','TolFun',1e-12,'TolX',1e-12);
     backindex=ta_out+da_out*1000;
-%     backindex=ta_out;
+% backindex=ta_out;
     [NTU(i,:),resnorm,residual,exitflag,output] =lsqnonlin(@(NTU)new_cross_cal(Ta_in,phi,Ts_in,Ps_in,Va_in,Vs_in,H,L,NTU)-backindex,2,NTU_down,NTU_up,opt);
-%     [NTU(i,:),resnorm,residual,exitflag,output] =fsolve(@(NTU)new_cross_cal(Ta_in,phi,Ts_in,Ps_in,Va_in,Vs_in,H,L,NTU)-backindex,5,opt);
+% [NTU(i,:),resnorm,residual,exitflag,output] =fsolve(@(NTU)new_cross_cal(Ta_in,phi,Ts_in,Ps_in,Va_in,Vs_in,H,L,NTU)-backindex,5,opt);
     hd(i,:)=NTU(i,:)*Ma_in/(aw*V);
     [ta_out_cal(i,:),da_out_cal(i,:)]=new_cross_check(Ta_in,phi,Ts_in,Ps_in,Va_in,Vs_in,H,L,NTU(i));
 end
+%
 
 
