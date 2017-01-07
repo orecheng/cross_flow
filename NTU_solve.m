@@ -1,6 +1,6 @@
 clc
 clear all
-filename='0905简化数据.xlsx';
+filename='0904简化数据.xlsx';
 sheet=1;
 data_raw=xlsread(filename,sheet);%读取Excel表格
 [n,~]=size(data_raw);%计算实验总次数
