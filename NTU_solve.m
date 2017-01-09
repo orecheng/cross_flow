@@ -1,9 +1,9 @@
 clc
 clear all
-filename='0904ç®€åŒ–æ•°æ®.xlsx';
+filename='0904¼ò»¯Êı¾İ.xlsx';
 sheet=1;
-data_raw=xlsread(filename,sheet);%è¯»å–EXCEL
-[n,~]=size(data_raw);ï¿½ï¿½Êµï¿½ï¿½ï¿½Ü´ï¿½ï¿½ï¿½
+data_raw=xlsread(filename,sheet);
+[n,~]=size(data_raw);
 
 raw_ps=data_raw(:,3);
 raw_ts=data_raw(:,4);
