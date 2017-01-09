@@ -48,6 +48,6 @@ for i=1:n
     hd(i,:)=NTU(i,:)*Ma_in/(aw*V);
     [ta_out_cal(i,:),da_out_cal(i,:)]=new_cross_check(Ta_in,phi,Ts_in,Ps_in,Va_in,Vs_in,H,L,NTU(i));
 end
-%
+
 
 
