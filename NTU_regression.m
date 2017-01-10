@@ -1,6 +1,6 @@
 clc
 clear all
-filename='³ýÊª.xlsx';
+filename='ÔÙÉú.xlsx';
 sheet=1;
 data_raw=xlsread(filename,sheet);
 [n,~]=size(data_raw);
@@ -34,4 +34,9 @@ AirInMass=AirInRho.*AirVol;
 SolutionInMass=SolutionVol.*SolutionRho;
 Fa=AirInMass/(L*H*3600);
 Fz=SolutionInMass/(L*W*3600);
+%% coefficient
+X=[V*ones(n,1),Fa,Fz,ksi];
+initial=ones(1,4);
 %% fit
+a=nlinfit(X,NTU,@NTU_eqution,initial);
+NTU_cal=a(1).*V.*Fa.^a(2).*Fz.^a(3).*(1-ksi).^a(4);

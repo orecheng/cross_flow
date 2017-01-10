@@ -1,6 +1,6 @@
 clc
 clear all
-filename='0904简化数据.xlsx';
+filename='0821简化数据（人字形交叉）.xlsx';
 sheet=1;
 data_raw=xlsread(filename,sheet);
 [n,~]=size(data_raw);
@@ -26,7 +26,7 @@ for i=1:n
     da_out=raw_da_out(i)*(1-err);
     
     H=0.5;
-    L=0.15;
+    L=0.15*4;
     W=0.65;
     V=H*L*W;
     aw=380;
