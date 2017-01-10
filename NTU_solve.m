@@ -1,9 +1,9 @@
 clc
 clear all
-filename='0905简化数据.xlsx';
+filename='0821简化数据（人字形交叉）.xlsx';
 sheet=1;
-data_raw=xlsread(filename,sheet);%读取Excel表格
-[n,~]=size(data_raw);%计算实验总次数
+data_raw=xlsread(filename,sheet);
+[n,~]=size(data_raw);
 
 raw_ps=data_raw(:,3);
 raw_ts=data_raw(:,4);
@@ -26,7 +26,7 @@ for i=1:n
     da_out=raw_da_out(i)*(1-err);
     
     H=0.5;
-    L=0.15;
+    L=0.15*4;
     W=0.65;
     V=H*L*W;
     aw=380;
@@ -42,11 +42,12 @@ for i=1:n
     
     opt = optimset('display','off','TolFun',1e-12,'TolX',1e-12);
     backindex=ta_out+da_out*1000;
-%     backindex=ta_out;
+% backindex=ta_out;
     [NTU(i,:),resnorm,residual,exitflag,output] =lsqnonlin(@(NTU)new_cross_cal(Ta_in,phi,Ts_in,Ps_in,Va_in,Vs_in,H,L,NTU)-backindex,2,NTU_down,NTU_up,opt);
-%     [NTU(i,:),resnorm,residual,exitflag,output] =fsolve(@(NTU)new_cross_cal(Ta_in,phi,Ts_in,Ps_in,Va_in,Vs_in,H,L,NTU)-backindex,5,opt);
+% [NTU(i,:),resnorm,residual,exitflag,output] =fsolve(@(NTU)new_cross_cal(Ta_in,phi,Ts_in,Ps_in,Va_in,Vs_in,H,L,NTU)-backindex,5,opt);
     hd(i,:)=NTU(i,:)*Ma_in/(aw*V);
     [ta_out_cal(i,:),da_out_cal(i,:)]=new_cross_check(Ta_in,phi,Ts_in,Ps_in,Va_in,Vs_in,H,L,NTU(i));
 end
+
 
 
